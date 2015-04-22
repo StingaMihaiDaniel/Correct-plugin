@@ -19,7 +19,7 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
 /**
- * Says "Hi" to the user.
+ * Edits a .properties file
  *
  */
 @Mojo(name = "process-properties")
