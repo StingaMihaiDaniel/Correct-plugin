@@ -1,2 +1,2 @@
 # Correct-plugin
-A small mojo that uses .properties files
+This mojo analizes the text inside a .properties file and corrects errors caused by misinterpreting special characters.
