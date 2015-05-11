@@ -4,7 +4,7 @@
 
 	<groupId>sample.plugin</groupId>
 	<artifactId>properties-processor-maven-plugin</artifactId>
-	<version>1.1-SNAPSHOT</version>
+	<version>1.1.1-SNAPSHOT</version>
 	<packaging>maven-plugin</packaging>
 
 	<name>Sample Parameter-less Maven Plugin</name>
