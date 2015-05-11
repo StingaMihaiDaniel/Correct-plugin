@@ -22,12 +22,17 @@ import org.apache.maven.plugins.annotations.Parameter;
  * Edits a .properties file
  *
  */
+
 @Mojo(name = "process-properties")
 public class CorrectMojo extends AbstractMojo {
 	public static String everything = null;
+	
+	//This flag is used to mark a new line
 	private boolean newLine = true;
+
 	private boolean right = false;
 	private boolean comment = false;
+
 	@Parameter
 	private String[] inputFiles;
 	@Parameter
