@@ -1,4 +1,4 @@
-package sample.plugin.hello_maven_plugin;
+package sample.plugin.correct_maven_plugin;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -20,19 +20,23 @@ import org.apache.maven.plugins.annotations.Parameter;
 
 /**
  * Edits a .properties file
- *
  */
 
 @Mojo(name = "process-properties")
 public class CorrectMojo extends AbstractMojo {
-	public static String everything = null;
-	
+<<<<<<< HEAD
 	//This flag is used to mark a new line
+=======
+>>>>>>> f35b9e14a5b7b5484274fae558afef3dbc56dd58
 	private boolean newLine = true;
 
 	private boolean right = false;
 	private boolean comment = false;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> f35b9e14a5b7b5484274fae558afef3dbc56dd58
 	@Parameter
 	private String[] inputFiles;
 	@Parameter
@@ -40,7 +44,7 @@ public class CorrectMojo extends AbstractMojo {
 	@Parameter(defaultValue = "${basedir}")
 	private String projectPath;
 
-	public void process(InputStream in, String outputPath) throws IOException {
+	private void process(InputStream in, Path outputFilePath) throws IOException {
 		if (in == null) {
 			getLog().error("File not found!");
 			return;
@@ -48,8 +52,9 @@ public class CorrectMojo extends AbstractMojo {
 		BufferedReader br = null;
 		try {
 			br = new BufferedReader(new InputStreamReader(in));
-			File file = new File(outputPath);
+			File file = outputFilePath.toFile();
 			Writer writer = new FileWriter(file);
+			
 			int value;
 			value = br.read();
 			while (value != -1) {
@@ -93,6 +98,7 @@ public class CorrectMojo extends AbstractMojo {
 		}
 	}
 
+	@Override
 	public void execute() throws MojoExecutionException, MojoFailureException {
 		try {
 			for (int i = 0; i < inputFiles.length; i++){
@@ -100,8 +106,8 @@ public class CorrectMojo extends AbstractMojo {
 				String outputFileName = FilenameUtils.getName(filePath.toString());
 				Path outputFilePath = Paths.get(outputDirectory,outputFileName);
 				FileInputStream in = new FileInputStream(filePath.toString());
-				getLog().info(outputFileName);
-				this.process(in,outputFilePath.toString());
+				getLog().debug("Processing: " + outputFileName);
+				this.process(in, outputFilePath);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

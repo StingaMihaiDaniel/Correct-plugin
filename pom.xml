@@ -4,7 +4,7 @@
 
 	<groupId>sample.plugin</groupId>
 	<artifactId>properties-processor-maven-plugin</artifactId>
-	<version>1.1-SNAPSHOT</version>
+	<version>1.1.1-SNAPSHOT</version>
 	<packaging>maven-plugin</packaging>
 
 	<name>Sample Parameter-less Maven Plugin</name>
@@ -41,9 +41,6 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-plugin-plugin</artifactId>
 				<version>3.2</version>
-				<configuration>
-					<goalPrefix>mysql-jdbc-compliance</goalPrefix>
-				</configuration>
 				<executions>
 					<execution>
 						<id>default-descriptor</id>
@@ -54,6 +51,44 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
 		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!-- Workaround for M2E 'Plugin execution not covered by lifecycle configuration': -->
+				<plugin>
+				     <groupId>org.eclipse.m2e</groupId>
+				     <artifactId>lifecycle-mapping</artifactId>
+				     <version>1.0.0</version>
+				     <configuration>
+				       <lifecycleMappingMetadata>
+				         <pluginExecutions>
+				           <pluginExecution>
+				             <pluginExecutionFilter>
+				               <groupId>org.apache.maven.plugins</groupId>
+				               <artifactId>maven-plugin-plugin</artifactId>
+				               <versionRange>[3.2,)</versionRange>
+				               <goals>
+				                 <goal>descriptor</goal>
+				               </goals>
+				             </pluginExecutionFilter>
+				             <action>
+				               <ignore/>
+				             </action>
+				           </pluginExecution>
+				         </pluginExecutions>
+				       </lifecycleMappingMetadata>
+				     </configuration>
+			    </plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 </project>
